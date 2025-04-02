@@ -1,0 +1,31 @@
+name: Build Firmware
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Zephyr
+        uses: zmkfirmware/setup-zephyr@v1
+        with:
+          west-manifest: config/west.yml
+
+      - name: Build firmware
+        run: |
+          west init -l config
+          west update
+          west zephyr-export
+          west build -s app -b nice_nano -- -DZMK_CONFIG=/workspaces/zmk-config/config
+          
+      - name: Upload firmware
+        uses: actions/upload-artifact@v2
+        with:
+          name: firmware
+          path: build/zephyr/zmk.uf2
