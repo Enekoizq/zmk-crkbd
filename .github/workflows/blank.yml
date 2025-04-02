@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Zephyr
-        uses: zmkfirmware/setup-zephyr@main
+        uses: zmkfirmware/setup-zephyr@master
         with:
           west-manifest: config/west.yml
 
