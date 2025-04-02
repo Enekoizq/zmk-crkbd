@@ -1,0 +1,11 @@
+manifest:
+  self:
+    path: .
+  remotes:
+    - name: zmk
+      url-base: https://github.com/zmkfirmware
+  projects:
+    - name: zmk
+      remote: zmk
+      revision: main
+      path: app

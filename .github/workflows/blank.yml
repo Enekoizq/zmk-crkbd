@@ -2,30 +2,33 @@ name: Build Firmware
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Zephyr
-        uses: zmkfirmware/setup-zephyr@master
-        with:
-          west-manifest: config/west.yml
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build gperf ccache dfu-util python3-pip python3-setuptools
+        pip3 install west
 
-      - name: Build firmware
-        run: |
-          west init -l config
-          west update
-          west zephyr-export
-          west build -s app -b nice_nano -- -DZMK_CONFIG=/workspaces/zmk-config/config
-          
-      - name: Upload firmware
-        uses: actions/upload-artifact@v2
-        with:
-          name: firmware
-          path: build/zephyr/zmk.uf2
+    - name: Initialize West
+      run: |
+        west init -l .
+        west update
+        west zephyr-export
+
+    - name: Build Firmware
+      run: |
+        west build -s app -b nice_nano -- -DZMK_CONFIG=config/boards/shields/crkbd
+
+    - name: Upload Firmware
+      uses: actions/upload-artifact@v2
+      with:
+        name: firmware
+        path: build/zephyr/zmk.uf2
