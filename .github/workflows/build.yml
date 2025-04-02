@@ -29,7 +29,7 @@ jobs:
         west build -s app -b nice_nano -- -DZMK_CONFIG=config/boards/shields/crkbd
 
     - name: Upload Firmware
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: firmware
         path: build/zephyr/zmk.uf2
