@@ -1,0 +1,46 @@
+/* keymap.dtsi - ZMK keymap for Corne with NRF52840 */
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        layer_state = "default";
+
+        layers {
+            default_layer {
+                bindings = <
+                    &kp TAB  &kp Q    &kp W    &kp E    &kp R    &kp T    &kp LCTL &kp A    &kp S    &kp D    &kp F    &kp G    
+                    &kp LSFT &kp Z    &kp X    &kp C    &kp V    &kp B    &none    &none    &none    &kp LGUI &mo 1    
+                    &kp SPC  &kp BSPC &kp P    &kp O    &kp I    &kp U    &kp Y    &kp QUOT &kp SCLN &kp L    &kp K    &kp J    &kp H    
+                    &kp ESC  &kp SLSH &kp DOT  &kp COMM &kp M    &kp N    &none    &none    &none    &kp RALT &mo 2    &kp ENT
+                >;
+            };
+
+            layer_1 {
+                bindings = <
+                    &kp TAB  &kp 1    &kp 2    &kp 3    &kp 4    &kp 5    &kp LCTL &none    &none    &none    &none    &none    
+                    &kp LSFT &none    &none    &none    &none    &none    &none    &none    &none    &kp LGUI &trans   
+                    &kp SPC  &kp BSPC &kp 0    &kp 9    &kp 8    &kp 7    &kp 6    &none    &none    &kp RGHT &kp UP   &kp DOWN &kp LEFT 
+                    &none    &none    &none    &none    &none    &none    &none    &none    &none    &kp RALT &trans   &kp ENT
+                >;
+            };
+
+            layer_2 {
+                bindings = <
+                    &kp TAB  &kp EXCL &kp AT   &kp HASH &kp DLLR &kp PERC &kp LCTL &none    &none    &none    &none    &none    
+                    &kp LSFT &none    &none    &none    &none    &none    &none    &none    &none    &kp LGUI &trans   
+                    &kp SPC  &kp BSPC &kp RBKT &kp LBKT &kp RCBR &kp LCBR &kp PIPE &kp GRV  &kp BSLS &kp EQL  &kp MINS &kp PLUS 
+                    &kp TILDE &kp DQT  &kp QUOT &kp LT   &kp GT   &kp UNDERS &none    &none    &none    &kp RALT &trans   &kp ENT
+                >;
+            };
+
+            layer_3 {
+                bindings = <
+                    &bootloader_reset &none    &none    &none    &none    &none    &rgb_toggle &rgb_hue_up &rgb_sat_up &rgb_val_up &none    &none    
+                    &rgb_mode_next &rgb_hue_down &rgb_sat_down &rgb_val_down &none    &none    &none    &none    &none    &kp LGUI &trans   
+                    &kp SPC  &none    &none    &none    &none    &none    &none    &none    &none    &none    &none    &none    
+                    &none    &none    &none    &none    &none    &none    &none    &none    &none    &kp RALT &trans   &kp ENT
+                >;
+            };
+        };
+    };
+};
